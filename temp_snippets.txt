@@ -1,0 +1,76 @@
+
+set hive.cli.print.header=true;
+set hive.cli.print.current.db=true
+show databases;
+create database deloitte;
+create database if not exists deloitte;
+use deloitte;
+
+Internal / Managed tables  
+-----------------------------------
+Upon loading a file from HDFS , the file gets physically moved
+from HDFS into the Hive table.
+
+Disadvantages
+--------------------
+If you are deleting the table, file is permanently lost.
+Data is not available for other processes of Hadoop
+
+create table employees(name string, salary float, dept string)
+row format delimited
+fields terminated by ',';
+
+// If the second line is not given (newline is assumed to be row delimiter)
+//third line by default ascii is considered to be the column seperator
+
+describe formatted database deloitte;
+
+load data local inpath 'emp1.txt' into table employees;
+
+describe formatted employees;
+
+load data inpath 'emp2.txt' into table employees;  (The file from hdfs is moved into hive warehouse making it unavailable for other hadoop processes)
+
+drop table employees (Along with table, the emp2 data is also permanently lost)
+
+External tables
+--------------------
+
+Upon loading a file from external table, the file is not moved to the warehouse, 
+it is available for the other processes.
+Table itself is mapped to the location of the file in HDFS
+
+# Create emp2 & emp3 and move it into hdfs to  directory "data"
+
+create external table employee(name string, salary float, dept string)
+row format delimited
+fields terminated by ','
+location '/data'
+
+describe formatted employee
+
+Internal tables are stored in Metastore/Derby and managed by hive
+External tables are stored outside hive's metastore in HDFS
+
+Partitioning
+============
+create table employee(name string, salary float, dept string)
+partitioned by(state string)
+row format delimited
+fields terminated by ','
+
+load data local inpath 'emp1.csv' into table employees
+partition(state='MH')
+
+load data local inpath 'emp2.csv' into table employees
+partition(state='KA')
+
+load data local inpath 'emp3.csv' into table employees
+partition(state='AP')
+
+select avg(sal) from employees where state="KA"
+
+show partitions emp
+
+inser overwrite directory '/mydata' select * from emp;
+alter table emp drop if exists partition (state="TN")
