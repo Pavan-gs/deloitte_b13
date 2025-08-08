@@ -1,4 +1,4 @@
-OLTP --> Database --> RDBMS --> ACID properties
++OLTP --> Database --> RDBMS --> ACID properties
 OLAP --> Data warehouse
 NOSQL db's --> Keyval, columnar, document, graph --> CAP
 
@@ -506,7 +506,8 @@ Run anywhere
 ============
 HDFS, Apache mesos, AWS S3, Azure blob storage
 
-Spark RDD (Resilient Distributed Datasets) --> Logical Split of the data --> They're fault tolerant, distributed, immutable
+Spark RDD (Resilient Distributed Datasets) --> Logical Split of the data --> 
+They're fault tolerant, distributed, immutable
 
 Lazy evalution
 ==============
@@ -640,9 +641,16 @@ Parquet file format
 -------------------------
 Compressed columnar file format
 
+Memory Management
+=================
+Execution memory --> Used for storing data being processed during tasks such as shuffle, join/aggrgation
+Storage memory --> Used  for caching data, rdd's and dataframes
+
+On-heap memory --> Memory allocated within JVM --> used for both execution & storage
 
 ML  --> Discriminant models
-==========================
+===========================
+
 Supervised --> Predictive models --> Regression, Classification
 Unsupervised
 
