@@ -1,0 +1,8 @@
+FirstName|Dep
+John|HR
+Jane|HR
+Raj|IT
+Ramu|Dev
+Deo|IT
+Murthy|IT
+Rakz|HR
