@@ -1,0 +1,18 @@
+ML
+==
+Supervised --> Predictive models --> 
+Regression, Classification
+Un-supervised
+
+Model lifecycle 
+===============
+EDA, Data cleaning, Analyse, Visualise
+Problem statement for ML
+Train & test samples
+Model build
+Data preparation --> Feature selection, 
+Handling class imbalance, handling categorical vars,
+Pre-processing, Cross-validations, evaluation
+
+
+

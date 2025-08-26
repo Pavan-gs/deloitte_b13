@@ -431,7 +431,7 @@ Data is stored by default in Blob / ADLS gen2, Azure data bricks decides it, we 
 Data components
 ===============
 
-1. Tables --> Tables created using spark sql / databricks sql (stored in hive metastore), query it using sql
+1. Tables --> Tables created using spark sql / databricks sql (stored in unity catalogue/hive metastore), query it using sql
 2. Data --> View all data sources, tables, files(dbfs) etc. 
 3. DBFS --> Distributed file system, upload/download files/ store data for spark jobs
 4. Hive catalogue --> Metadata repository for spark tables, manages table definitions, schemas, locations (compatible with hive ql)
@@ -442,6 +442,14 @@ Data components
 8. External data sources
 
 /Workspace/Users/azurefaculty@ravinsofttech.com/b1.csv
+
+ DBFS --> Storage layer on top of ADLS/Blob storage
+
+ Delta tables --> All tables in bricks is delta
+
+ Volumes --> raw data managed along with unity catalogue
+
+ lakehouse --> architecture bringing delta tables(acid) with dwh
 
 Azure data factory
 ==================
@@ -551,8 +559,7 @@ Software Development Life Cycle
 1. Waterfall --> Sequential, linear
 
 Scope of change is little
-Good for simple, cost affective well defined, limited time period projects
-
+Good for simple, cost affective, well defined, limited time period projects
 
 2. Agile
 
@@ -605,11 +612,12 @@ Kubernetes --> Container management technology.
 
 Puppet --> Operational tool, Define configurations for each & every host, scaaling up/down is dynamic
 
-Nagios --> Continuous montioring
+Nagios --> Continuous monitoring
 
 Azure Devops
 =============
-Boards
+Boards --> Used for tracking work (kaban, scrum, agile)
+======
 Epic
 issues bugs
 features
@@ -617,8 +625,9 @@ user story
 artifacts --> allows teams to share packages such as Maven, npm, NuGet, 
 and more from public and private sources and integrate package sharing into your pipelines
 
-Repos --> To connect with your repository
-Pipelines --> To build pipelines
+Repos --> To connect with your repository/manage source code
+Pipelines --> To build CI/CD pipelines
+Test plans --> Manual & exploratory testing, test case management/tracking defects, execution
 
 Az    vs    AWS
 
@@ -631,17 +640,57 @@ ML studio    Sagemaker
 PowerBi      Athena, glue
 
 
-Azure Fabric
+Azure Fabric --> SAAS --> Unified platform
 ============
 
 Capacity --> Dedicated set of resources
 
 Experiences --> A collection of capabilities specific to services --> 
 
+Workspace --> Like a resource group/container for lakehouse, warehouses etc
+Lakehouse --> Centralized storage --> like data lake --> by default all data is in delta format
+Upon creating a table, automatically provides a sql endpoint for adhoc querying, also create notebooks
+to use distributed spark processing
+warehouse --> SQL/BI --> Schema (star/snowflake schema)
+
+Predictive models --> y=f(x)
+Unsupervised learning --> Euclidean distance
+Deep learning --> Neural networks --> chain rule of differentiation to update model weight untill
+it gives a least error (cost function, gradient descent)
+NLP --> tokens, vectorisation, tf/idf, word2vec, bow
+Transformers --> Self attention models
+Generative AI --> LLM, multimodal llms (text, image, speech) --> trained on billion of tokens, can understand
+context and generate outputs
+Embeddings --> Text is converted into floating point vectors --> numerical representation
+ 
+Zero shot --> add 2+5 devided by 2
+one shot --> add 2+5 devided by 2 for ex 1+3/2 = 2
+few shot --> give multiple examples
+chain of thoughts --> reasoning
+
+system --> sets the model's behaviour
+user --> actual question
+assistant --> model's response
 
 
+about you --> 
+objective
+tg
+ex --> in table format
+role of system
 
+To re-train the model on your own data
 
+Finetuning --> Costly, static, needs retraining of the model whenever data change 
+RAGS
+
+RAGS (Retrieval Augmented generation) --> dynamically inject relevant context from your data into the prompt
+faster, cheaper, flexible for enterprise usecases
+
+Example
+=======
+Deloitte --> gpt --> (sidekick) model knows everything in the world but it doesn't know about deloitte's internal
+policies for uprisal, hr, call sheet, governance, harassment 
 
 
 
